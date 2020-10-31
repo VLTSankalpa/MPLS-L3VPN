@@ -1,0 +1,607 @@
+﻿CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#sh run
+Building configuration...
+
+Current configuration : 2157 bytes
+!
+! Last configuration change at 18:02:37 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-6-ASN-456
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3339355867
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3339355867
+ revocation-check none
+ rsakeypair TP-self-signed-3339355867
+!
+!
+crypto pki certificate chain TP-self-signed-3339355867
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9NESUR1GB6G
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 6.6.6.6 255.255.255.255
+ ipv6 address 2001::6/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.46
+ encapsulation dot1Q 46
+ ip address 10.4.6.6 255.255.255.0
+ ip ospf priority 255
+ ipv6 address 2001:4:6::6/64
+!
+interface GigabitEthernet1.56
+ encapsulation dot1Q 56
+ ip address 10.5.6.6 255.255.255.0
+ ip ospf priority 255
+ ipv6 address 2001:5:6::6/64
+!
+router ospf 1
+ network 6.6.6.6 0.0.0.0 area 0
+ network 10.4.6.0 0.0.0.255 area 0
+ network 10.5.6.0 0.0.0.255 area 0
+!
+router bgp 456
+ bgp log-neighbor-changes
+ network 6.6.6.6 mask 255.255.255.255
+ neighbor 4.4.4.4 remote-as 456
+ neighbor 4.4.4.4 update-source Loopback0
+ neighbor 4.4.4.4 route-reflector-client
+ neighbor 4.4.4.4 next-hop-self
+ neighbor 5.5.5.5 remote-as 456
+ neighbor 5.5.5.5 update-source Loopback0
+ neighbor 5.5.5.5 route-reflector-client
+ neighbor 5.5.5.5 next-hop-self
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#sh ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       unassigned      YES unset  up                    up      
+GigabitEthernet1.46    10.4.6.6        YES TFTP   up                    up      
+GigabitEthernet1.56    10.5.6.6        YES TFTP   up                    up      
+Loopback0              6.6.6.6         YES TFTP   up                    up      
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#show bgp ipv4 unicast summary
+BGP router identifier 6.6.6.6, local AS number 456
+BGP table version is 40, main routing table version 40
+4 network entries using 992 bytes of memory
+4 path entries using 544 bytes of memory
+3/3 BGP path/bestpath attribute entries using 840 bytes of memory
+1 BGP AS-PATH entries using 40 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 2416 total bytes of memory
+BGP activity 13/9 prefixes, 20/16 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+4.4.4.4         4          456      64      67       40    0    0 00:54:32        1
+5.5.5.5         4          456      65      69       40    0    0 00:54:32        2
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#show bgp ipv4 unicast
+BGP table version is 40, local router ID is 6.6.6.6
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ r>i  4.4.4.4/32       4.4.4.4                  0    100      0 i
+ r>i  5.5.5.5/32       5.5.5.5                  0    100      0 i
+ *>   6.6.6.6/32       0.0.0.0                  0         32768 i
+ *>i  7.7.7.7/32       5.5.5.5                  0    100      0 1 456 ?
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      4.0.0.0/32 is subnetted, 1 subnets
+O        4.4.4.4 [110/2] via 10.4.6.4, 00:54:33, GigabitEthernet1.46
+      5.0.0.0/32 is subnetted, 1 subnets
+O        5.5.5.5 [110/2] via 10.5.6.5, 00:54:34, GigabitEthernet1.56
+      6.0.0.0/32 is subnetted, 1 subnets
+C        6.6.6.6 is directly connected, Loopback0
+      7.0.0.0/32 is subnetted, 1 subnets
+B        7.7.7.7 [200/0] via 5.5.5.5, 00:54:16
+      10.0.0.0/8 is variably subnetted, 5 subnets, 2 masks
+O        10.4.5.0/24 [110/2] via 10.5.6.5, 00:54:34, GigabitEthernet1.56
+                     [110/2] via 10.4.6.4, 00:54:33, GigabitEthernet1.46
+C        10.4.6.0/24 is directly connected, GigabitEthernet1.46
+L        10.4.6.6/32 is directly connected, GigabitEthernet1.46
+C        10.5.6.0/24 is directly connected, GigabitEthernet1.56
+L        10.5.6.6/32 is directly connected, GigabitEthernet1.56
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+5.5.5.5           1   FULL/BDR        00:00:36    10.5.6.5        GigabitEthernet1.56
+4.4.4.4           1   FULL/BDR        00:00:37    10.4.6.4        GigabitEthernet1.46
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#traceroute 7.7.7.7 source loopback 0
+Type escape sequence to abort.
+Tracing the route to 7.7.7.7
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.5.6.5 15 msec 16 msec 17 msec
+  2 10.1.5.1 22 msec 17 msec 22 msec
+  3 10.1.11.11 [MPLS: Labels 24011/30 Exp 0] 70 msec 59 msec 101 msec
+  4 10.11.12.12 [MPLS: Labels 24002/30 Exp 0] 70 msec 78 msec 90 msec
+  5 10.12.13.13 [MPLS: Labels 24001/30 Exp 0] 66 msec 82 msec 67 msec
+  6 10.3.7.3 [MPLS: Label 30 Exp 0] 68 msec 74 msec 56 msec
+  7 10.3.7.7 69 msec *  80 msec
+CSR-6-ASN-456#!
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#wr
+Building configuration...
+[OK]
+CSR-6-ASN-456#!
+CSR-6-ASN-456#
+CSR-6-ASN-456#
+CSR-6-ASN-456#terminal length 0
+CSR-6-ASN-456#more system:running-config
+!
+! Last configuration change at 18:02:37 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-6-ASN-456
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3339355867
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3339355867
+ revocation-check none
+ rsakeypair TP-self-signed-3339355867
+!
+!
+crypto pki certificate chain TP-self-signed-3339355867
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9NESUR1GB6G
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 6.6.6.6 255.255.255.255
+ ipv6 address 2001::6/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.46
+ encapsulation dot1Q 46
+ ip address 10.4.6.6 255.255.255.0
+ ip ospf priority 255
+ ipv6 address 2001:4:6::6/64
+!
+interface GigabitEthernet1.56
+ encapsulation dot1Q 56
+ ip address 10.5.6.6 255.255.255.0
+ ip ospf priority 255
+ ipv6 address 2001:5:6::6/64
+!
+router ospf 1
+ network 6.6.6.6 0.0.0.0 area 0
+ network 10.4.6.0 0.0.0.255 area 0
+ network 10.5.6.0 0.0.0.255 area 0
+!
+router bgp 456
+ bgp log-neighbor-changes
+ network 6.6.6.6 mask 255.255.255.255
+ neighbor 4.4.4.4 remote-as 456
+ neighbor 4.4.4.4 update-source Loopback0
+ neighbor 4.4.4.4 route-reflector-client
+ neighbor 4.4.4.4 next-hop-self
+ neighbor 5.5.5.5 remote-as 456
+ neighbor 5.5.5.5 update-source Loopback0
+ neighbor 5.5.5.5 route-reflector-client
+ neighbor 5.5.5.5 next-hop-self
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-6-ASN-456#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSR-6-ASN-456 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+

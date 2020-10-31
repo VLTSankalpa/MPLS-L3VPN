@@ -1,0 +1,750 @@
+﻿RP/0/0/CPU0:XR-2-P-ASN-1#!!!!!!!!
+RP/0/0/CPU0:XR-2-P-ASN-1#terminal length 0
+Sat Oct 31 20:54:10.057 UTC
+RP/0/0/CPU0:XR-2-P-ASN-1#sh run
+Sat Oct 31 20:54:13.016 UTC
+Building configuration...
+!! IOS XR Configuration 6.0.1
+!! Last configuration change at Sat Oct 31 10:25:24 2020 by cisco
+!
+hostname XR-2-P-ASN-1
+line console
+ exec-timeout 0 0
+!
+interface Loopback0
+ ipv4 address 12.12.12.12 255.255.255.255
+ ipv6 address 2001::12/128
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0.112
+ ipv4 address 10.1.12.12 255.255.255.0
+ ipv6 address 2001:1:12::12/64
+ encapsulation dot1q 112
+!
+interface GigabitEthernet0/0/0/0.212
+ ipv4 address 10.2.12.12 255.255.255.0
+ ipv6 address 2001:2:12::12/64
+ encapsulation dot1q 212
+!
+interface GigabitEthernet0/0/0/0.312
+ ipv4 address 10.3.12.12 255.255.255.0
+ ipv6 address 2001:3:12::12/64
+ encapsulation dot1q 312
+!
+interface GigabitEthernet0/0/0/0.1112
+ ipv4 address 10.11.12.12 255.255.255.0
+ ipv6 address 2001:11:12::12/64
+ encapsulation dot1q 1112
+!
+interface GigabitEthernet0/0/0/0.1213
+ ipv4 address 10.12.13.12 255.255.255.0
+ ipv6 address 2001:12:13::12/64
+ encapsulation dot1q 1213
+!
+router isis 1
+ net 00.0000.0000.0012.00
+ address-family ipv4 unicast
+  mpls ldp auto-config
+ !
+ interface Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.112
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.212
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.312
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.1112
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.1213
+  address-family ipv4 unicast
+  !
+ !
+!
+mpls ldp
+!
+end
+
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh ip int bri
+Sat Oct 31 20:54:13.496 UTC
+
+Interface                      IP-Address      Status          Protocol Vrf-Name
+Loopback0                      12.12.12.12     Up              Up       default 
+MgmtEth0/0/CPU0/0              unassigned      Shutdown        Down     default 
+GigabitEthernet0/0/0/0         unassigned      Up              Up       default 
+GigabitEthernet0/0/0/0.112     10.1.12.12      Up              Up       default 
+GigabitEthernet0/0/0/0.212     10.2.12.12      Up              Up       default 
+GigabitEthernet0/0/0/0.312     10.3.12.12      Up              Up       default 
+GigabitEthernet0/0/0/0.1112    10.11.12.12     Up              Up       default 
+GigabitEthernet0/0/0/0.1213    10.12.13.12     Up              Up       default 
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh isis nei
+Sat Oct 31 20:54:13.726 UTC
+
+IS-IS 1 neighbors:
+System Id      Interface        SNPA           State Holdtime Type IETF-NSF
+XR-3-PE-ASN-1  Gi0/0/0/0.1213   5000.000d.0001 Up    7        L1L2 Capable 
+XR-1-PE-RR-ASN-1 Gi0/0/0/0.1112   5000.000b.0001 Up    25       L2   Capable 
+
+Total neighbor count: 2
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh bgp vpnv4 uni sum
+Sat Oct 31 20:54:13.996 UTC
+% BGP instance 'default' not active
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh bgp vpnv4 uni    
+Sat Oct 31 20:54:14.266 UTC
+% BGP instance 'default' not active
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh bgp vpnv4 uni | i /32
+Sat Oct 31 20:54:14.456 UTC
+% BGP instance 'default' not active
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh bgp vpnv4 uni vrf A 
+Sat Oct 31 20:54:14.666 UTC
+% BGP instance 'default' not active
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh bgp vpnv4 uni vrf B
+Sat Oct 31 20:54:14.916 UTC
+% BGP instance 'default' not active
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh mpls int
+Sat Oct 31 20:54:15.286 UTC
+Interface                  LDP      Tunnel   Static   Enabled 
+-------------------------- -------- -------- -------- --------
+GigabitEthernet0/0/0/0.112 Yes      No       No       Yes
+GigabitEthernet0/0/0/0.212 Yes      No       No       Yes
+GigabitEthernet0/0/0/0.312 Yes      No       No       Yes
+GigabitEthernet0/0/0/0.1112 Yes     No       No       Yes
+GigabitEthernet0/0/0/0.1213 Yes     No       No       Yes
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh mpls ldp nei
+Sat Oct 31 20:54:15.576 UTC
+
+Peer LDP Identifier: 13.13.13.13:0
+  TCP connection: 13.13.13.13:41796 - 12.12.12.12:646
+  Graceful Restart: No
+  Session Holdtime: 180 sec
+  State: Oper; Msgs sent/rcvd: 74/78; Downstream-Unsolicited
+  Up time: 00:49:58
+  LDP Discovery Sources:
+    IPv4: (1)
+      GigabitEthernet0/0/0/0.1213
+    IPv6: (0)
+  Addresses bound to this peer:
+    IPv4: (5)
+      10.2.13.13     10.3.13.13     10.7.13.13     10.12.13.13    
+      13.13.13.13    
+    IPv6: (0)
+
+Peer LDP Identifier: 11.11.11.11:0
+  TCP connection: 11.11.11.11:646 - 12.12.12.12:20730
+  Graceful Restart: No
+  Session Holdtime: 180 sec
+  State: Oper; Msgs sent/rcvd: 74/76; Downstream-Unsolicited
+  Up time: 00:49:50
+  LDP Discovery Sources:
+    IPv4: (1)
+      GigabitEthernet0/0/0/0.1112
+    IPv6: (0)
+  Addresses bound to this peer:
+    IPv4: (4)
+      10.1.11.11     10.2.11.11     10.11.12.11    11.11.11.11    
+    IPv6: (0)
+
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh mpls ldp bind
+Sat Oct 31 20:54:15.906 UTC
+
+1.1.1.1/32, rev 51
+        Local binding: label: 24001
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24000   
+            13.13.13.13:0       24004   
+2.2.2.2/32, rev 52
+        Local binding: label: 24003
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24010   
+            13.13.13.13:0       24010   
+3.3.3.3/32, rev 25
+        Local binding: label: 24002
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24011   
+            13.13.13.13:0       24001   
+10.1.2.0/24, rev 55
+        Local binding: label: 24008
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24001   
+            13.13.13.13:0       24016   
+10.1.11.0/24, rev 54
+        Local binding: label: 24007
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       ImpNull 
+            13.13.13.13:0       24012   
+10.1.12.0/24, rev 8
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24006   
+            13.13.13.13:0       24009   
+10.2.11.0/24, rev 53
+        Local binding: label: 24005
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       ImpNull 
+            13.13.13.13:0       24011   
+10.2.12.0/24, rev 6
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24005   
+            13.13.13.13:0       24008   
+10.2.13.0/24, rev 27
+        Local binding: label: 24004
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24009   
+            13.13.13.13:0       ImpNull 
+10.3.12.0/24, rev 12
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24004   
+            13.13.13.13:0       24007   
+10.3.13.0/24, rev 29
+        Local binding: label: 24006
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24008   
+            13.13.13.13:0       ImpNull 
+10.7.13.0/24, rev 0
+        No local binding 
+        Remote bindings: (1 peers)
+            Peer                Label    
+            -----------------   ---------
+            13.13.13.13:0       ImpNull 
+10.11.12.0/24, rev 10
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       ImpNull 
+            13.13.13.13:0       24006   
+10.12.13.0/24, rev 4
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24003   
+            13.13.13.13:0       ImpNull 
+11.11.11.11/32, rev 50
+        Local binding: label: 24000
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       ImpNull 
+            13.13.13.13:0       24003   
+12.12.12.12/32, rev 2
+        Local binding: label: ImpNull
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24002   
+            13.13.13.13:0       24005   
+13.13.13.13/32, rev 34
+        Local binding: label: 24010
+        Remote bindings: (2 peers)
+            Peer                Label    
+            -----------------   ---------
+            11.11.11.11:0       24007   
+            13.13.13.13:0       ImpNull 
+
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#show mpls forwarding
+Sat Oct 31 20:54:16.446 UTC
+Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
+Label  Label       or ID              Interface                    Switched    
+------ ----------- ------------------ ------------ --------------- ------------
+24000  Pop         11.11.11.11/32     Gi0/0/0/0.1112 10.11.12.11     17723       
+24001  24000       1.1.1.1/32         Gi0/0/0/0.1112 10.11.12.11     15878       
+24002  24001       3.3.3.3/32         Gi0/0/0/0.1213 10.12.13.13     16943       
+24003  24010       2.2.2.2/32         Gi0/0/0/0.1112 10.11.12.11     22156       
+24004  Pop         10.2.13.0/24       Gi0/0/0/0.1213 10.12.13.13     0           
+24005  Pop         10.2.11.0/24       Gi0/0/0/0.1112 10.11.12.11     0           
+24006  Pop         10.3.13.0/24       Gi0/0/0/0.1213 10.12.13.13     0           
+24007  Pop         10.1.11.0/24       Gi0/0/0/0.1112 10.11.12.11     0           
+24008  24001       10.1.2.0/24        Gi0/0/0/0.1112 10.11.12.11     0           
+24010  Pop         13.13.13.13/32     Gi0/0/0/0.1213 10.12.13.13     36337       
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh ip route
+Sat Oct 31 20:54:16.856 UTC
+
+Codes: C - connected, S - static, R - RIP, B - BGP, (>) - Diversion path
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - ISIS, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, su - IS-IS summary null, * - candidate default
+       U - per-user static route, o - ODR, L - local, G  - DAGR, l - LISP
+       A - access/subscriber, a - Application route
+       M - mobile route, r - RPL, (!) - FRR Backup path
+
+Gateway of last resort is not set
+
+i L2 1.1.1.1/32 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L2 2.2.2.2/32 [115/30] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L2 3.3.3.3/32 [115/20] via 10.12.13.13, 00:49:59, GigabitEthernet0/0/0/0.1213
+i L2 10.1.2.0/24 [115/30] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L2 10.1.11.0/24 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+C    10.1.12.0/24 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.112
+L    10.1.12.12/32 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.112
+i L2 10.2.11.0/24 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+C    10.2.12.0/24 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.212
+L    10.2.12.12/32 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.212
+i L1 10.2.13.0/24 [115/20] via 10.12.13.13, 00:50:02, GigabitEthernet0/0/0/0.1213
+C    10.3.12.0/24 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.312
+L    10.3.12.12/32 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.312
+i L1 10.3.13.0/24 [115/20] via 10.12.13.13, 00:50:02, GigabitEthernet0/0/0/0.1213
+C    10.11.12.0/24 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.1112
+L    10.11.12.12/32 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.1112
+C    10.12.13.0/24 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.1213
+L    10.12.13.12/32 is directly connected, 11:15:17, GigabitEthernet0/0/0/0.1213
+i L2 11.11.11.11/32 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+L    12.12.12.12/32 is directly connected, 13:26:15, Loopback0
+i L1 13.13.13.13/32 [115/20] via 10.12.13.13, 00:50:02, GigabitEthernet0/0/0/0.1213
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#sh ip route isis | i /32
+Sat Oct 31 20:54:17.226 UTC
+i L2 1.1.1.1/32 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L2 2.2.2.2/32 [115/30] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L2 3.3.3.3/32 [115/20] via 10.12.13.13, 00:49:59, GigabitEthernet0/0/0/0.1213
+i L2 11.11.11.11/32 [115/20] via 10.11.12.11, 00:49:54, GigabitEthernet0/0/0/0.1112
+i L1 13.13.13.13/32 [115/20] via 10.12.13.13, 00:50:03, GigabitEthernet0/0/0/0.1213
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#!!!
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#
+RP/0/0/CPU0:XR-2-P-ASN-1#terminal length 0
+Sat Oct 31 21:07:13.973 UTC
+RP/0/0/CPU0:XR-2-P-ASN-1#configure terminal
+Sat Oct 31 21:07:14.143 UTC
+RP/0/0/CPU0:XR-2-P-ASN-1(config)#no logging console
+RP/0/0/CPU0:XR-2-P-ASN-1(config)#commit
+Sat Oct 31 21:07:14.623 UTC
+RP/0/0/CPU0:XR-2-P-ASN-1(config)#exit
+RP/0/0/CPU0:XR-2-P-ASN-1#show running-config
+Sat Oct 31 21:07:15.083 UTC
+Building configuration...
+!! IOS XR Configuration 6.0.1
+!! Last configuration change at Sat Oct 31 10:25:24 2020 by cisco
+!
+hostname XR-2-P-ASN-1
+line console
+ exec-timeout 0 0
+!
+interface Loopback0
+ ipv4 address 12.12.12.12 255.255.255.255
+ ipv6 address 2001::12/128
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0.112
+ ipv4 address 10.1.12.12 255.255.255.0
+ ipv6 address 2001:1:12::12/64
+ encapsulation dot1q 112
+!
+interface GigabitEthernet0/0/0/0.212
+ ipv4 address 10.2.12.12 255.255.255.0
+ ipv6 address 2001:2:12::12/64
+ encapsulation dot1q 212
+!
+interface GigabitEthernet0/0/0/0.312
+ ipv4 address 10.3.12.12 255.255.255.0
+ ipv6 address 2001:3:12::12/64
+ encapsulation dot1q 312
+!
+interface GigabitEthernet0/0/0/0.1112
+ ipv4 address 10.11.12.12 255.255.255.0
+ ipv6 address 2001:11:12::12/64
+ encapsulation dot1q 1112
+!
+interface GigabitEthernet0/0/0/0.1213
+ ipv4 address 10.12.13.12 255.255.255.0
+ ipv6 address 2001:12:13::12/64
+ encapsulation dot1q 1213
+!
+router isis 1
+ net 00.0000.0000.0012.00
+ address-family ipv4 unicast
+  mpls ldp auto-config
+ !
+ interface Loopback0
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.112
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.212
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.312
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.1112
+  address-family ipv4 unicast
+  !
+ !
+ interface GigabitEthernet0/0/0/0.1213
+  address-family ipv4 unicast
+  !
+ !
+!
+mpls ldp
+!
+end
+
+RP/0/0/CPU0:XR-2-P-ASN-1#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XR-2-P-ASN-1 con0/0/CPU0 is now available
+
+
+
+
+
+Press RETURN to get started.
+

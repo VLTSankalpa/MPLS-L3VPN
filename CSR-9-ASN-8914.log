@@ -1,0 +1,557 @@
+﻿CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#sh run
+Building configuration...
+
+Current configuration : 1729 bytes
+!
+! Last configuration change at 20:26:24 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-9-ASN-8914
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1633956493
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1633956493
+ revocation-check none
+ rsakeypair TP-self-signed-1633956493
+!
+!
+crypto pki certificate chain TP-self-signed-1633956493
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9AD8W1NSOPL
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 9.9.9.9 255.255.255.255
+ ipv6 address 2001::9/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.89
+ encapsulation dot1Q 89
+ ip address 10.8.9.9 255.255.255.0
+ ipv6 address 2001:8:9::9/64
+!
+interface GigabitEthernet1.914
+ encapsulation dot1Q 914
+ ip address 10.9.14.9 255.255.255.0
+ ipv6 address 2001:9:14::9/64
+!
+!
+router eigrp 8914
+ network 9.9.9.9 0.0.0.0
+ network 10.8.9.0 0.0.0.255
+ network 10.9.14.0 0.0.0.255
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#sh ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       unassigned      YES unset  up                    up      
+GigabitEthernet1.89    10.8.9.9        YES TFTP   up                    up      
+GigabitEthernet1.914   10.9.14.9       YES TFTP   up                    up      
+Loopback0              9.9.9.9         YES TFTP   up                    up      
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#show bgp ipv4 unicast summary
+% BGP not active
+
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#show bgp ipv4 unicast
+% BGP not active
+
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      8.0.0.0/32 is subnetted, 1 subnets
+D        8.8.8.8 [90/130816] via 10.8.9.8, 00:56:50, GigabitEthernet1.89
+      9.0.0.0/32 is subnetted, 1 subnets
+C        9.9.9.9 is directly connected, Loopback0
+      10.0.0.0/8 is variably subnetted, 5 subnets, 2 masks
+C        10.8.9.0/24 is directly connected, GigabitEthernet1.89
+L        10.8.9.9/32 is directly connected, GigabitEthernet1.89
+C        10.9.14.0/24 is directly connected, GigabitEthernet1.914
+L        10.9.14.9/32 is directly connected, GigabitEthernet1.914
+D EX     10.10.10.10/32 
+           [170/2585856] via 10.9.14.14, 00:36:11, GigabitEthernet1.914
+      14.0.0.0/32 is subnetted, 1 subnets
+D        14.14.14.14 [90/2841] via 10.9.14.14, 00:56:48, GigabitEthernet1.914
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#show ip ospf neighbor
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#show ip ei
+CSR-9-ASN-8914#show ip eigrp nei
+CSR-9-ASN-8914#show ip eigrp neighbors 
+EIGRP-IPv4 Neighbors for AS(8914)
+H   Address                 Interface              Hold Uptime   SRTT   RTO  Q  Seq
+                                                   (sec)         (ms)       Cnt Num
+1   10.9.14.14              Gi1.914                  13 00:56:55   54   324  0  9
+0   10.8.9.8                Gi1.89                   12 00:56:56   36   216  0  10
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#wr
+Building configuration...
+[OK]
+CSR-9-ASN-8914#!
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#
+CSR-9-ASN-8914#terminal length 0
+CSR-9-ASN-8914#more system:running-config
+!
+! Last configuration change at 20:26:24 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-9-ASN-8914
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1633956493
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1633956493
+ revocation-check none
+ rsakeypair TP-self-signed-1633956493
+!
+!
+crypto pki certificate chain TP-self-signed-1633956493
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9AD8W1NSOPL
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 9.9.9.9 255.255.255.255
+ ipv6 address 2001::9/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.89
+ encapsulation dot1Q 89
+ ip address 10.8.9.9 255.255.255.0
+ ipv6 address 2001:8:9::9/64
+!
+interface GigabitEthernet1.914
+ encapsulation dot1Q 914
+ ip address 10.9.14.9 255.255.255.0
+ ipv6 address 2001:9:14::9/64
+!
+!
+router eigrp 8914
+ network 9.9.9.9 0.0.0.0
+ network 10.8.9.0 0.0.0.255
+ network 10.9.14.0 0.0.0.255
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-9-ASN-8914#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSR-9-ASN-8914 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+

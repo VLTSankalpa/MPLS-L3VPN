@@ -1,0 +1,585 @@
+﻿L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#sh run
+Building configuration...
+
+Current configuration : 4256 bytes
+!
+! Last configuration change at 20:04:00 UTC Sat Oct 31 2020
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname L2_SW
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!         
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 1112,1213,1314 
+!
+! 
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!         
+interface GigabitEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+
+L2_SW#             
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#sh vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+12   VLAN0012                         active    
+15   VLAN0015                         active    
+23   VLAN0023                         active    
+37   VLAN0037                         active    
+45   VLAN0045                         active    
+46   VLAN0046                         active    
+56   VLAN0056                         active    
+89   VLAN0089                         active    
+111  VLAN0111                         active    
+112  VLAN0112                         active    
+210  VLAN0210                         active    
+211  VLAN0211                         active    
+212  VLAN0212                         active    
+213  VLAN0213                         active    
+312  VLAN0312                         active    
+313  VLAN0313                         active    
+411  VLAN0411                         active    
+713  VLAN0713                         active    
+811  VLAN0811                         active    
+914  VLAN0914                         active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+1112 VLAN1112                         active    
+1213 VLAN1213                         active    
+1314 VLAN1314                         active    
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0   
+12   enet  100012     1500  -      -      -        -    -        0      0   
+15   enet  100015     1500  -      -      -        -    -        0      0   
+23   enet  100023     1500  -      -      -        -    -        0      0   
+37   enet  100037     1500  -      -      -        -    -        0      0   
+45   enet  100045     1500  -      -      -        -    -        0      0   
+46   enet  100046     1500  -      -      -        -    -        0      0   
+56   enet  100056     1500  -      -      -        -    -        0      0   
+89   enet  100089     1500  -      -      -        -    -        0      0   
+111  enet  100111     1500  -      -      -        -    -        0      0   
+112  enet  100112     1500  -      -      -        -    -        0      0   
+210  enet  100210     1500  -      -      -        -    -        0      0   
+          
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+211  enet  100211     1500  -      -      -        -    -        0      0   
+212  enet  100212     1500  -      -      -        -    -        0      0   
+213  enet  100213     1500  -      -      -        -    -        0      0   
+312  enet  100312     1500  -      -      -        -    -        0      0   
+313  enet  100313     1500  -      -      -        -    -        0      0   
+411  enet  100411     1500  -      -      -        -    -        0      0   
+713  enet  100713     1500  -      -      -        -    -        0      0   
+811  enet  100811     1500  -      -      -        -    -        0      0   
+914  enet  100914     1500  -      -      -        -    -        0      0   
+1002 fddi  101002     1500  -      -      -        -    -        0      0   
+1003 tr    101003     1500  -      -      -        -    -        0      0   
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+1112 enet  101112     1500  -      -      -        -    -        0      0   
+1213 enet  101213     1500  -      -      -        -    -        0      0   
+1314 enet  101314     1500  -      -      -        -    -        0      0   
+
+Remote SPAN VLANs
+------------------------------------------------------------------------------
+
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+
+L2_SW#      
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#show in
+L2_SW#show int
+L2_SW#show interfaces tr
+L2_SW#show interfaces trunk 
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/0       on               802.1q         trunking      1
+Gi0/1       on               802.1q         trunking      1
+Gi0/2       on               802.1q         trunking      1
+Gi0/3       on               802.1q         trunking      1
+Gi1/0       on               802.1q         trunking      1
+Gi1/1       on               802.1q         trunking      1
+Gi1/2       on               802.1q         trunking      1
+Gi1/3       on               802.1q         trunking      1
+Gi2/0       on               802.1q         trunking      1
+Gi2/1       on               802.1q         trunking      1
+Gi2/2       on               802.1q         trunking      1
+Gi2/3       on               802.1q         trunking      1
+Gi3/0       on               802.1q         trunking      1
+Gi3/1       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/0       1-4094
+Gi0/1       1-4094
+Gi0/2       1-4094
+Gi0/3       1-4094
+Gi1/0       1-4094
+          
+Port        Vlans allowed on trunk
+Gi1/1       1-4094
+Gi1/2       1-4094
+Gi1/3       1-4094
+Gi2/0       1-4094
+Gi2/1       1-4094
+Gi2/2       1-4094
+Gi2/3       1-4094
+Gi3/0       1-4094
+Gi3/1       1-4094
+
+Port        Vlans allowed and active in management domain
+Gi0/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi0/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi0/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi0/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+          
+Port        Vlans allowed and active in management domain
+Gi1/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi3/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi3/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi0/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi0/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+          
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi1/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/2       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi2/3       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi3/0       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+Gi3/1       1,12,15,23,37,45-46,56,89,111-112,210-213,312-313,411,713,811,914,1112,1213,1314
+L2_SW#             
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#show ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up      
+GigabitEthernet0/1     unassigned      YES unset  up                    up      
+GigabitEthernet0/2     unassigned      YES unset  up                    up      
+GigabitEthernet0/3     unassigned      YES unset  up                    up      
+GigabitEthernet1/0     unassigned      YES unset  up                    up      
+GigabitEthernet1/1     unassigned      YES unset  up                    up      
+GigabitEthernet1/2     unassigned      YES unset  up                    up      
+GigabitEthernet1/3     unassigned      YES unset  up                    up      
+GigabitEthernet2/0     unassigned      YES unset  up                    up      
+GigabitEthernet2/1     unassigned      YES unset  up                    up      
+GigabitEthernet2/2     unassigned      YES unset  up                    up      
+GigabitEthernet2/3     unassigned      YES unset  up                    up      
+GigabitEthernet3/0     unassigned      YES unset  up                    up      
+GigabitEthernet3/1     unassigned      YES unset  up                    up      
+L2_SW#
+L2_SW#
+L2_SW#
+L2_SW#wr
+Building configuration...
+Compressed configuration from 4256 bytes to 1833 bytes[OK]
+*Oct 31 20:38:37.291: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+L2_SW#
+*Oct 31 20:38:39.280: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+L2_SW#
+L2_SW#
+L2_SW#terminal length 0
+L2_SW#show running-config
+Building configuration...
+
+Current configuration : 4256 bytes
+!
+! Last configuration change at 20:04:00 UTC Sat Oct 31 2020
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname L2_SW
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 1112,1213,1314 
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^CC
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+

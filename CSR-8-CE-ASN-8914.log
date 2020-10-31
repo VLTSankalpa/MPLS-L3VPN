@@ -1,0 +1,568 @@
+﻿CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#sh run
+Building configuration...
+
+Current configuration : 1828 bytes
+!
+! Last configuration change at 20:26:55 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-8-CE-ASN-8914
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-44270087
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-44270087
+ revocation-check none
+ rsakeypair TP-self-signed-44270087
+!
+!
+crypto pki certificate chain TP-self-signed-44270087
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 96VSPGATLGI
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 8.8.8.8 255.255.255.255
+ ipv6 address 2001::8/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.89
+ encapsulation dot1Q 89
+ ip address 10.8.9.8 255.255.255.0
+ ipv6 address 2001:8:9::8/64
+!
+interface GigabitEthernet1.811
+ encapsulation dot1Q 811
+ ip address 10.8.11.8 255.255.255.0
+ ipv6 address 2001:8:11::8/64
+!
+!
+router eigrp 8914
+ network 8.8.8.8 0.0.0.0
+ network 10.8.9.0 0.0.0.255
+!
+router bgp 8914
+ bgp log-neighbor-changes
+ redistribute connected
+ neighbor 10.8.11.11 remote-as 1
+ neighbor 10.8.11.11 allowas-in
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#show ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       unassigned      YES unset  up                    up      
+GigabitEthernet1.89    10.8.9.8        YES TFTP   up                    up      
+GigabitEthernet1.811   10.8.11.8       YES TFTP   up                    up      
+Loopback0              8.8.8.8         YES TFTP   up                    up      
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#show bgp ipv4 unicast summary
+BGP router identifier 8.8.8.8, local AS number 8914
+BGP table version is 10, main routing table version 10
+3 network entries using 744 bytes of memory
+3 path entries using 408 bytes of memory
+1/1 BGP path/bestpath attribute entries using 280 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 1432 total bytes of memory
+BGP activity 5/2 prefixes, 5/2 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.8.11.11      4            1       0       0        1    0    0 04:47:50 Active
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#show bgp ipv4 unicast
+BGP table version is 10, local router ID is 8.8.8.8
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>   8.8.8.8/32       0.0.0.0                  0         32768 ?
+ *>   10.8.9.0/24      0.0.0.0                  0         32768 ?
+ *>   10.8.11.0/24     0.0.0.0                  0         32768 ?
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      8.0.0.0/32 is subnetted, 1 subnets
+C        8.8.8.8 is directly connected, Loopback0
+      9.0.0.0/32 is subnetted, 1 subnets
+D        9.9.9.9 [90/130816] via 10.8.9.9, 00:55:57, GigabitEthernet1.89
+      10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+C        10.8.9.0/24 is directly connected, GigabitEthernet1.89
+L        10.8.9.8/32 is directly connected, GigabitEthernet1.89
+C        10.8.11.0/24 is directly connected, GigabitEthernet1.811
+L        10.8.11.8/32 is directly connected, GigabitEthernet1.811
+D        10.9.14.0/24 [90/3072] via 10.8.9.9, 00:55:57, GigabitEthernet1.89
+D EX     10.10.10.10/32 
+           [170/2586112] via 10.8.9.9, 00:35:18, GigabitEthernet1.89
+      14.0.0.0/32 is subnetted, 1 subnets
+D        14.14.14.14 [90/3097] via 10.8.9.9, 00:55:55, GigabitEthernet1.89
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#show ip ei
+CSR-8-CE-ASN-8914#show ip eigrp nei
+CSR-8-CE-ASN-8914#show ip eigrp neighbors 
+EIGRP-IPv4 Neighbors for AS(8914)
+H   Address                 Interface              Hold Uptime   SRTT   RTO  Q  Seq
+                                                   (sec)         (ms)       Cnt Num
+0   10.8.9.9                Gi1.89                   12 00:56:07   37   222  0  19
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#tra
+CSR-8-CE-ASN-8914#traceroute 10.10.10.10 so
+CSR-8-CE-ASN-8914#traceroute 10.10.10.10 source loo
+CSR-8-CE-ASN-8914#traceroute 10.10.10.10 source loopback 0
+Type escape sequence to abort.
+Tracing the route to 10.10.10.10
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.8.9.9 24 msec 12 msec 9 msec
+  2 10.9.14.14 16 msec 19 msec 19 msec
+  3 10.13.14.13 38 msec 51 msec 33 msec
+  4 10.12.13.12 [MPLS: Labels 24003/34 Exp 0] 83 msec 76 msec 79 msec
+  5 10.11.12.11 [MPLS: Labels 24010/34 Exp 0] 80 msec 69 msec 81 msec
+  6 10.1.11.1 [MPLS: Labels 16/34 Exp 0] 75 msec 119 msec 89 msec
+  7 10.2.10.2 [MPLS: Label 34 Exp 0] 76 msec 106 msec 69 msec
+  8 10.2.10.10 81 msec *  112 msec
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#wr
+Building configuration...
+[OK]
+CSR-8-CE-ASN-8914#!
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#
+CSR-8-CE-ASN-8914#terminal length 0
+CSR-8-CE-ASN-8914#more system:running-config
+!
+! Last configuration change at 20:26:55 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-8-CE-ASN-8914
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-44270087
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-44270087
+ revocation-check none
+ rsakeypair TP-self-signed-44270087
+!
+!
+crypto pki certificate chain TP-self-signed-44270087
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 96VSPGATLGI
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 8.8.8.8 255.255.255.255
+ ipv6 address 2001::8/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.89
+ encapsulation dot1Q 89
+ ip address 10.8.9.8 255.255.255.0
+ ipv6 address 2001:8:9::8/64
+!
+interface GigabitEthernet1.811
+ encapsulation dot1Q 811
+ ip address 10.8.11.8 255.255.255.0
+ ipv6 address 2001:8:11::8/64
+!
+!
+router eigrp 8914
+ network 8.8.8.8 0.0.0.0
+ network 10.8.9.0 0.0.0.255
+!
+router bgp 8914
+ bgp log-neighbor-changes
+ redistribute connected
+ neighbor 10.8.11.11 remote-as 1
+ neighbor 10.8.11.11 allowas-in
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-8-CE-ASN-8914#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSR-8-CE-ASN-8914 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+

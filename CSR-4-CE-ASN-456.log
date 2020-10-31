@@ -1,0 +1,617 @@
+﻿CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#sh run
+Building configuration...
+
+Current configuration : 2085 bytes
+!
+! Last configuration change at 18:07:06 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-4-CE-ASN-456
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3044030264
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3044030264
+ revocation-check none
+ rsakeypair TP-self-signed-3044030264
+!
+!
+crypto pki certificate chain TP-self-signed-3044030264
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9FQAMHMYROG
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 4.4.4.4 255.255.255.255
+ ipv6 address 2001::4/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.45
+ encapsulation dot1Q 45
+ ip address 10.4.5.4 255.255.255.0
+ ipv6 address 2001:4:5::4/64
+!
+interface GigabitEthernet1.46
+ encapsulation dot1Q 46
+ ip address 10.4.6.4 255.255.255.0
+ ipv6 address 2001:4:6::4/64
+!
+interface GigabitEthernet1.411
+ encapsulation dot1Q 411
+ ip address 10.4.11.4 255.255.255.0
+ ipv6 address 2001:4:11::4/64
+!
+router ospf 1
+ network 4.4.4.4 0.0.0.0 area 0
+ network 10.4.5.0 0.0.0.255 area 0
+ network 10.4.6.0 0.0.0.255 area 0
+!
+router bgp 456
+ bgp log-neighbor-changes
+ network 4.4.4.4 mask 255.255.255.255
+ neighbor 6.6.6.6 remote-as 456
+ neighbor 6.6.6.6 update-source Loopback0
+ neighbor 6.6.6.6 next-hop-self
+ neighbor 10.4.11.11 remote-as 1
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#sh ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       unassigned      YES unset  up                    up      
+GigabitEthernet1.45    10.4.5.4        YES TFTP   up                    up      
+GigabitEthernet1.46    10.4.6.4        YES TFTP   up                    up      
+GigabitEthernet1.411   10.4.11.4       YES TFTP   up                    up      
+Loopback0              4.4.4.4         YES TFTP   up                    up      
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#show bgp ipv4 unicast summary
+BGP router identifier 4.4.4.4, local AS number 456
+BGP table version is 42, main routing table version 42
+4 network entries using 992 bytes of memory
+4 path entries using 544 bytes of memory
+3/3 BGP path/bestpath attribute entries using 840 bytes of memory
+1 BGP rrinfo entries using 40 bytes of memory
+1 BGP AS-PATH entries using 40 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 2456 total bytes of memory
+BGP activity 18/14 prefixes, 19/15 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+6.6.6.6         4          456      67      64       42    0    0 00:54:13        3
+10.4.11.11      4            1       0       0        1    0    0 04:47:53 Active
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#show bgp ipv4 unicast
+BGP table version is 42, local router ID is 4.4.4.4
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>   4.4.4.4/32       0.0.0.0                  0         32768 i
+ r>i  5.5.5.5/32       5.5.5.5                  0    100      0 i
+ r>i  6.6.6.6/32       6.6.6.6                  0    100      0 i
+ *>i  7.7.7.7/32       5.5.5.5                  0    100      0 1 456 ?
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      4.0.0.0/32 is subnetted, 1 subnets
+C        4.4.4.4 is directly connected, Loopback0
+      5.0.0.0/32 is subnetted, 1 subnets
+O        5.5.5.5 [110/2] via 10.4.5.5, 00:54:14, GigabitEthernet1.45
+      6.0.0.0/32 is subnetted, 1 subnets
+O        6.6.6.6 [110/2] via 10.4.6.6, 00:54:13, GigabitEthernet1.46
+      7.0.0.0/32 is subnetted, 1 subnets
+B        7.7.7.7 [200/0] via 5.5.5.5, 00:53:57
+      10.0.0.0/8 is variably subnetted, 7 subnets, 2 masks
+C        10.4.5.0/24 is directly connected, GigabitEthernet1.45
+L        10.4.5.4/32 is directly connected, GigabitEthernet1.45
+C        10.4.6.0/24 is directly connected, GigabitEthernet1.46
+L        10.4.6.4/32 is directly connected, GigabitEthernet1.46
+C        10.4.11.0/24 is directly connected, GigabitEthernet1.411
+L        10.4.11.4/32 is directly connected, GigabitEthernet1.411
+O        10.5.6.0/24 [110/2] via 10.4.6.6, 00:54:13, GigabitEthernet1.46
+                     [110/2] via 10.4.5.5, 00:54:14, GigabitEthernet1.45
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+6.6.6.6         255   FULL/DR         00:00:32    10.4.6.6        GigabitEthernet1.46
+5.5.5.5           1   FULL/DR         00:00:36    10.4.5.5        GigabitEthernet1.45
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#traceroute 7.7.7.7 source loopback 0
+Type escape sequence to abort.
+Tracing the route to 7.7.7.7
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.4.5.5 21 msec 13 msec 12 msec
+  2 10.1.5.1 16 msec 46 msec 20 msec
+  3 10.1.11.11 [MPLS: Labels 24011/30 Exp 0] 87 msec 71 msec 69 msec
+  4 10.11.12.12 [MPLS: Labels 24002/30 Exp 0] 77 msec 93 msec 69 msec
+  5 10.12.13.13 [MPLS: Labels 24001/30 Exp 0] 65 msec 66 msec 64 msec
+  6 10.3.7.3 [MPLS: Label 30 Exp 0] 65 msec 78 msec 59 msec
+  7 10.3.7.7 77 msec *  64 msec
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#!
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#wr
+Building configuration...
+[OK]
+CSR-4-CE-ASN-456#!
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#
+CSR-4-CE-ASN-456#terminal length 0
+CSR-4-CE-ASN-456#more system:running-config
+!
+! Last configuration change at 18:07:06 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-4-CE-ASN-456
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3044030264
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3044030264
+ revocation-check none
+ rsakeypair TP-self-signed-3044030264
+!
+!
+crypto pki certificate chain TP-self-signed-3044030264
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9FQAMHMYROG
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 4.4.4.4 255.255.255.255
+ ipv6 address 2001::4/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.45
+ encapsulation dot1Q 45
+ ip address 10.4.5.4 255.255.255.0
+ ipv6 address 2001:4:5::4/64
+!
+interface GigabitEthernet1.46
+ encapsulation dot1Q 46
+ ip address 10.4.6.4 255.255.255.0
+ ipv6 address 2001:4:6::4/64
+!
+interface GigabitEthernet1.411
+ encapsulation dot1Q 411
+ ip address 10.4.11.4 255.255.255.0
+ ipv6 address 2001:4:11::4/64
+!
+router ospf 1
+ network 4.4.4.4 0.0.0.0 area 0
+ network 10.4.5.0 0.0.0.255 area 0
+ network 10.4.6.0 0.0.0.255 area 0
+!
+router bgp 456
+ bgp log-neighbor-changes
+ network 4.4.4.4 mask 255.255.255.255
+ neighbor 6.6.6.6 remote-as 456
+ neighbor 6.6.6.6 update-source Loopback0
+ neighbor 6.6.6.6 next-hop-self
+ neighbor 10.4.11.11 remote-as 1
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-4-CE-ASN-456#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSR-4-CE-ASN-456 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+

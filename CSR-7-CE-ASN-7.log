@@ -1,0 +1,433 @@
+﻿CSR-7-CE-ASN-7#sh run
+Building configuration...
+
+Current configuration : 1833 bytes
+!
+! Last configuration change at 18:11:22 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-7-CE-ASN-7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!         
+!         
+!         
+!         
+no ip domain lookup
+!         
+!         
+!         
+no login on-success log
+!         
+!         
+!         
+          
+CSR-7-CE-ASN-7#h ip int bri
+help ip int bri
+     ^
+% Invalid input detected at '^' marker.
+
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#show bgp ipv4 unicast summary
+BGP router identifier 7.7.7.7, local AS number 456
+BGP table version is 29, main routing table version 29
+4 network entries using 992 bytes of memory
+4 path entries using 544 bytes of memory
+2/2 BGP path/bestpath attribute entries using 560 bytes of memory
+1 BGP AS-PATH entries using 40 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 2136 total bytes of memory
+BGP activity 15/11 prefixes, 15/11 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.3.7.3        4            1      65      64       29    0    0 00:54:43        3
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#show bgp ipv4 unicast
+BGP table version is 29, local router ID is 7.7.7.7
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>   4.4.4.4/32       10.3.7.3                               0 1 456 i
+ *>   5.5.5.5/32       10.3.7.3                               0 1 456 i
+ *>   6.6.6.6/32       10.3.7.3                               0 1 456 i
+ *>   7.7.7.7/32       0.0.0.0                  0         32768 ?
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      4.0.0.0/32 is subnetted, 1 subnets
+B        4.4.4.4 [20/0] via 10.3.7.3, 00:54:31
+      5.0.0.0/32 is subnetted, 1 subnets
+B        5.5.5.5 [20/0] via 10.3.7.3, 00:54:31
+      6.0.0.0/32 is subnetted, 1 subnets
+B        6.6.6.6 [20/0] via 10.3.7.3, 00:54:31
+      7.0.0.0/32 is subnetted, 1 subnets
+C        7.7.7.7 is directly connected, Loopback0
+      10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C        10.3.7.0/24 is directly connected, GigabitEthernet1.37
+L        10.3.7.7/32 is directly connected, GigabitEthernet1.37
+C        10.7.13.0/24 is directly connected, GigabitEthernet1.713
+L        10.7.13.7/32 is directly connected, GigabitEthernet1.713
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#show ip ospf neighbor
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#tra
+CSR-7-CE-ASN-7#traceroute 4.4.4.4 so
+CSR-7-CE-ASN-7#traceroute 4.4.4.4 source loo
+CSR-7-CE-ASN-7#traceroute 4.4.4.4 source loopback 0
+Type escape sequence to abort.
+Tracing the route to 4.4.4.4
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.3.7.3 19 msec 12 msec 12 msec
+  2 10.3.13.13 [MPLS: Labels 24004/27 Exp 0] 69 msec 66 msec 53 msec
+  3 10.12.13.12 [MPLS: Labels 24001/27 Exp 0] 53 msec 78 msec 59 msec
+  4 10.11.12.11 [MPLS: Labels 24000/27 Exp 0] 107 msec 65 msec 65 msec
+  5 10.1.5.1 [MPLS: Label 27 Exp 0] 67 msec 61 msec 62 msec
+  6 10.1.5.5 88 msec 96 msec 100 msec
+  7 10.4.5.4 74 msec *  87 msec
+CSR-7-CE-ASN-7#!
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#wr
+Building configuration...
+[OK]
+CSR-7-CE-ASN-7#!
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#
+CSR-7-CE-ASN-7#terminal length 0
+CSR-7-CE-ASN-7#more system:running-config
+!
+! Last configuration change at 18:11:22 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-7-CE-ASN-7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3621224970
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3621224970
+ revocation-check none
+ rsakeypair TP-self-signed-3621224970
+!
+!
+crypto pki certificate chain TP-self-signed-3621224970
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 92C9D7IV69X
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 7.7.7.7 255.255.255.255
+ ipv6 address 2001::7/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.37
+ encapsulation dot1Q 37
+ ip address 10.3.7.7 255.255.255.0
+ ipv6 address 2001:3:7::7/64
+!
+interface GigabitEthernet1.713
+ encapsulation dot1Q 713
+ ip address 10.7.13.7 255.255.255.0
+ ipv6 address 2001:7:13::7/64
+!
+router bgp 456
+ bgp log-neighbor-changes
+ redistribute connected route-map LOOPBACKS
+ neighbor 10.3.7.3 remote-as 1
+ neighbor 10.3.7.3 allowas-in
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+route-map LOOPBACKS permit 10 
+ match interface Loopback0
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-7-CE-ASN-7#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSR-7-CE-ASN-7 con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+

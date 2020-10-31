@@ -1,0 +1,404 @@
+﻿RP/0/0/CPU0:XR-4-CE-ASN-8914#!
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#show bgp ipv4 unicast summary
+Sat Oct 31 21:01:56.815 UTC
+BGP router identifier 14.14.14.14, local AS number 8914
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 28
+BGP main routing table version 28
+BGP NSR Initial initsync version 2 (Reached)
+BGP NSR/ISSU Sync-Group versions 0/0
+BGP scan interval 60 secs
+
+BGP is operating in STANDALONE mode.
+
+
+Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+Speaker              28         28         28         28          28           0
+
+Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+10.13.14.13       0     1     590     594       28    0    0 00:57:38          1
+
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#show bgp ipv4 unicast
+Sat Oct 31 21:01:59.155 UTC
+BGP router identifier 14.14.14.14, local AS number 8914
+BGP generic scan interval 60 secs
+Non-stop routing is enabled
+BGP table state: Active
+Table ID: 0xe0000000   RD version: 28
+BGP main routing table version 28
+BGP NSR Initial initsync version 2 (Reached)
+BGP NSR/ISSU Sync-Group versions 0/0
+BGP scan interval 60 secs
+
+Status codes: s suppressed, d damped, h history, * valid, > best
+              i - internal, r RIB-failure, S stale, N Nexthop-discard
+Origin codes: i - IGP, e - EGP, ? - incomplete
+   Network            Next Hop            Metric LocPrf Weight Path
+*> 8.8.8.8/32         10.9.14.9          2575360         32768 ?
+*> 9.9.9.9/32         10.9.14.9          2570240         32768 ?
+*> 10.10.10.10/32     10.13.14.13                            0 1 1 i
+*> 14.14.14.14/32     0.0.0.0                  0         32768 ?
+
+Processed 4 prefixes, 4 paths
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#show ip int bri
+Sat Oct 31 21:02:02.764 UTC
+
+Interface                      IP-Address      Status          Protocol Vrf-Name
+Loopback0                      14.14.14.14     Up              Up       default 
+MgmtEth0/0/CPU0/0              unassigned      Shutdown        Down     default 
+GigabitEthernet0/0/0/0         unassigned      Up              Up       default 
+GigabitEthernet0/0/0/0.914     10.9.14.14      Up              Up       default 
+GigabitEthernet0/0/0/0.1314    10.13.14.14     Up              Up       default 
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#show ip route
+Sat Oct 31 21:02:05.844 UTC
+
+Codes: C - connected, S - static, R - RIP, B - BGP, (>) - Diversion path
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - ISIS, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, su - IS-IS summary null, * - candidate default
+       U - per-user static route, o - ODR, L - local, G  - DAGR, l - LISP
+       A - access/subscriber, a - Application route
+       M - mobile route, r - RPL, (!) - FRR Backup path
+
+Gateway of last resort is not set
+
+D    8.8.8.8/32 [90/2575360] via 10.9.14.9, 00:57:47, GigabitEthernet0/0/0/0.914
+D    9.9.9.9/32 [90/2570240] via 10.9.14.9, 00:57:47, GigabitEthernet0/0/0/0.914
+D    10.8.9.0/24 [90/15360] via 10.9.14.9, 00:57:47, GigabitEthernet0/0/0/0.914
+C    10.9.14.0/24 is directly connected, 11:22:29, GigabitEthernet0/0/0/0.914
+L    10.9.14.14/32 is directly connected, 11:22:29, GigabitEthernet0/0/0/0.914
+B    10.10.10.10/32 [20/0] via 10.13.14.13, 00:54:13
+C    10.13.14.0/24 is directly connected, 11:22:29, GigabitEthernet0/0/0/0.1314
+L    10.13.14.14/32 is directly connected, 11:22:29, GigabitEthernet0/0/0/0.1314
+L    14.14.14.14/32 is directly connected, 13:33:59, Loopback0
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#sh run
+Sat Oct 31 21:02:12.114 UTC
+Building configuration...
+!! IOS XR Configuration 6.0.1
+!! Last configuration change at Sat Oct 31 20:24:55 2020 by cisco
+!
+hostname XR-4-CE-ASN-8914
+line console
+ exec-timeout 0 0
+!
+interface Loopback0
+ ipv4 address 14.14.14.14 255.255.255.255
+ ipv6 address 2001::14/128
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0.914
+ ipv4 address 10.9.14.14 255.255.255.0
+ ipv6 address 2001:9:14::14/64
+ encapsulation dot1q 914
+!
+interface GigabitEthernet0/0/0/0.1314
+ ipv4 address 10.13.14.14 255.255.255.0
+ ipv6 address 2001:13:14::14/64
+ encapsulation dot1q 1314
+!
+prefix-set LOOPBACKS
+  8.8.8.8/32,
+  9.9.9.9/32,
+  10.10.10.10/32,
+  14.14.14.14/32
+end-set
+!
+route-policy PASS
+  pass
+end-policy
+!
+route-policy LOOPBACKS_REDIS
+  if destination in LOOPBACKS then
+    pass
+  endif
+end-policy
+!
+router bgp 8914
+ address-family ipv4 unicast
+  redistribute eigrp 8914 route-policy LOOPBACKS_REDIS
+ !
+ neighbor 10.13.14.13
+  remote-as 1
+  address-family ipv4 unicast
+   route-policy PASS in
+   route-policy PASS out
+  !
+ !
+!
+router eigrp 8914
+ address-family ipv4
+  default-metric 1000 100 250 100 1500
+  default-information allowed out
+  redistribute bgp 8914
+  interface Loopback0
+   passive-interface
+  !
+  interface GigabitEthernet0/0/0/0.914
+  !
+ !
+!
+end
+
+RP/0/0/CPU0:XR-4-CE-ASN-8914#   
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#!
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#
+RP/0/0/CPU0:XR-4-CE-ASN-8914#terminal length 0
+Sat Oct 31 21:07:12.893 UTC
+RP/0/0/CPU0:XR-4-CE-ASN-8914#configure terminal
+Sat Oct 31 21:07:13.153 UTC
+RP/0/0/CPU0:XR-4-CE-ASN-8914(config)#no logging console
+RP/0/0/CPU0:XR-4-CE-ASN-8914(config)#commit
+Sat Oct 31 21:07:13.623 UTC
+RP/0/0/CPU0:XR-4-CE-ASN-8914(config)#exit
+RP/0/0/CPU0:XR-4-CE-ASN-8914#show running-config
+Sat Oct 31 21:07:13.953 UTC
+Building configuration...
+!! IOS XR Configuration 6.0.1
+!! Last configuration change at Sat Oct 31 20:24:55 2020 by cisco
+!
+hostname XR-4-CE-ASN-8914
+line console
+ exec-timeout 0 0
+!
+interface Loopback0
+ ipv4 address 14.14.14.14 255.255.255.255
+ ipv6 address 2001::14/128
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0.914
+ ipv4 address 10.9.14.14 255.255.255.0
+ ipv6 address 2001:9:14::14/64
+ encapsulation dot1q 914
+!
+interface GigabitEthernet0/0/0/0.1314
+ ipv4 address 10.13.14.14 255.255.255.0
+ ipv6 address 2001:13:14::14/64
+ encapsulation dot1q 1314
+!
+prefix-set LOOPBACKS
+  8.8.8.8/32,
+  9.9.9.9/32,
+  10.10.10.10/32,
+  14.14.14.14/32
+end-set
+!
+route-policy PASS
+  pass
+end-policy
+!
+route-policy LOOPBACKS_REDIS
+  if destination in LOOPBACKS then
+    pass
+  endif
+end-policy
+!
+router bgp 8914
+ address-family ipv4 unicast
+  redistribute eigrp 8914 route-policy LOOPBACKS_REDIS
+ !
+ neighbor 10.13.14.13
+  remote-as 1
+  address-family ipv4 unicast
+   route-policy PASS in
+   route-policy PASS out
+  !
+ !
+!
+router eigrp 8914
+ address-family ipv4
+  default-metric 1000 100 250 100 1500
+  default-information allowed out
+  redistribute bgp 8914
+  interface Loopback0
+   passive-interface
+  !
+  interface GigabitEthernet0/0/0/0.914
+  !
+ !
+!
+end
+
+RP/0/0/CPU0:XR-4-CE-ASN-8914#quit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XR-4-CE-ASN-8914 con0/0/CPU0 is now available
+
+
+
+
+
+Press RETURN to get started.
+

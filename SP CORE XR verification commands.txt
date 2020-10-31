@@ -1,0 +1,14 @@
+sh run
+sh ip int bri
+sh isis nei
+sh bgp vpnv4 uni sum
+sh bgp vpnv4 uni    
+sh bgp vpnv4 uni | i /32
+sh bgp vpnv4 uni vrf A 
+sh bgp vpnv4 uni vrf B
+sh mpls int
+sh mpls ldp nei
+sh mpls ldp bind
+show mpls forwarding
+sh ip route
+sh ip route isis | i /32

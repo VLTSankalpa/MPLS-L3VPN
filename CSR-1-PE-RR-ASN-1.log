@@ -1,0 +1,640 @@
+﻿CSR-1-PE-RR-ASN-1#sh run
+Building configuration...
+
+Current configuration : 3247 bytes
+!
+! Last configuration change at 19:59:43 UTC Sat Oct 31 2020
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-1-PE-RR-ASN-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition A
+ rd 1:1
+ !
+ address-family ipv4
+  route-target export 100:100
+  route-target import 100:100
+ exit-address-family
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+no login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1979137170
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1979137170
+ revocation-check none
+ rsakeypair TP-self-signed-1979137170
+!
+!
+crypto pki certificate chain TP-self-signed-1979137170
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9R2RNKY236I
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+ ipv6 address 2001::1/128
+!
+interface GigabitEthernet1
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1.12
+ encapsulation dot1Q 12
+ ip address 10.1.2.1 255.255.255.0
+ ip router isis 1
+ ipv6 address 2001:1:2::1/64
+!
+interface GigabitEthernet1.15
+ encapsulation dot1Q 15
+ vrf forwarding A
+ ip address 10.1.5.1 255.255.255.0
+!
+interface GigabitEthernet1.111
+ encapsulation dot1Q 111
+ ip address 10.1.11.1 255.255.255.0
+ ip router isis 1
+ ipv6 address 2001:1:11::1/64
+!
+interface GigabitEthernet1.112
+ encapsulation dot1Q 112
+ ip address 10.1.12.1 255.255.255.0
+ ip router isis 1
+ shutdown
+ ipv6 address 2001:1:12::1/64
+!
+router isis 1
+ net 00.0000.0000.0001.00
+ is-type level-2-only
+ metric-style narrow
+ passive-interface Loopback0
+ mpls ldp autoconfig
+!
+router bgp 1
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 2.2.2.2 remote-as 1
+ neighbor 2.2.2.2 update-source Loopback0
+ neighbor 3.3.3.3 remote-as 1
+ neighbor 3.3.3.3 update-source Loopback0
+ neighbor 11.11.11.11 remote-as 1
+ neighbor 11.11.11.11 update-source Loopback0
+ neighbor 13.13.13.13 remote-as 1
+ neighbor 13.13.13.13 update-source Loopback0
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor 2.2.2.2 activate
+  neighbor 2.2.2.2 send-community extended
+  neighbor 2.2.2.2 route-reflector-client
+  neighbor 3.3.3.3 activate
+  neighbor 3.3.3.3 send-community extended
+  neighbor 3.3.3.3 route-reflector-client
+  neighbor 11.11.11.11 activate
+  neighbor 11.11.11.11 send-community extended
+  neighbor 11.11.11.11 route-reflector-client
+  neighbor 13.13.13.13 activate
+  neighbor 13.13.13.13 send-community extended
+  neighbor 13.13.13.13 route-reflector-client
+ exit-address-family
+ !
+ address-family ipv4 vrf A
+  neighbor 10.1.5.5 remote-as 456
+  neighbor 10.1.5.5 activate
+ exit-address-family
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+!
+end
+
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh ip int bri
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       unassigned      YES unset  up                    up      
+GigabitEthernet1.12    10.1.2.1        YES TFTP   up                    up      
+GigabitEthernet1.15    10.1.5.1        YES TFTP   up                    up      
+GigabitEthernet1.111   10.1.11.1       YES TFTP   up                    up      
+GigabitEthernet1.112   10.1.12.1       YES TFTP   administratively down down    
+Loopback0              1.1.1.1         YES TFTP   up                    up      
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh isis nei
+
+Tag 1:
+System Id       Type Interface     IP Address      State Holdtime Circuit Id
+CSR-2-PE-ASN-1  L2   Gi1.12        10.1.2.2        UP    7        CSR-2-PE-ASN-1.01  
+XR-1-PE-RR-ASN- L2   Gi1.111       10.1.11.11      UP    7        XR-1-PE-RR-ASN.05  
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh bgp vpnv4 uni all sum
+BGP router identifier 1.1.1.1, local AS number 1
+BGP table version is 26, main routing table version 26
+8 network entries using 2048 bytes of memory
+13 path entries using 1768 bytes of memory
+9/7 BGP path/bestpath attribute entries using 2664 bytes of memory
+3 BGP rrinfo entries using 120 bytes of memory
+2 BGP AS-PATH entries using 48 bytes of memory
+2 BGP extended community entries using 48 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 6696 total bytes of memory
+BGP activity 39/31 prefixes, 77/64 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+2.2.2.2         4            1      59      69       26    0    0 00:47:44        1
+3.3.3.3         4            1      60      66       26    0    0 00:47:30        1
+10.1.5.5        4          456      58      57       26    0    0 00:47:34        3
+11.11.11.11     4            1      71      68       26    0    0 00:47:49        5
+13.13.13.13     4            1      58      64       26    0    0 00:47:29        3
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh bgp vpnv4 uni all
+BGP table version is 26, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+Route Distinguisher: 1:1 (default for vrf A)
+ *>   4.4.4.4/32       10.1.5.5                               0 456 i
+ *>   5.5.5.5/32       10.1.5.5                 0             0 456 i
+ *>   6.6.6.6/32       10.1.5.5                               0 456 i
+ * i  7.7.7.7/32       3.3.3.3                  0    100      0 456 ?
+ *>i                   3.3.3.3                  0    100      0 456 ?
+Route Distinguisher: 2:2
+ * i  8.8.8.8/32       13.13.13.13        2575360    100      0 8914 ?
+ *>i                   13.13.13.13        2575360    100      0 8914 ?
+ * i  9.9.9.9/32       13.13.13.13        2570240    100      0 8914 ?
+ *>i                   13.13.13.13        2570240    100      0 8914 ?
+ * i  10.10.10.10/32   2.2.2.2                  0    100      0 8914 i
+ *>i                   2.2.2.2                  0    100      0 8914 i
+ * i  14.14.14.14/32   13.13.13.13              0    100      0 8914 ?
+ *>i                   13.13.13.13              0    100      0 8914 ?
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh bgp vpnv4 uni all | i /32
+ *>   4.4.4.4/32       10.1.5.5                               0 456 i
+ *>   5.5.5.5/32       10.1.5.5                 0             0 456 i
+ *>   6.6.6.6/32       10.1.5.5                               0 456 i
+ * i  7.7.7.7/32       3.3.3.3                  0    100      0 456 ?
+ * i  8.8.8.8/32       13.13.13.13        2575360    100      0 8914 ?
+ * i  9.9.9.9/32       13.13.13.13        2570240    100      0 8914 ?
+ * i  10.10.10.10/32   2.2.2.2                  0    100      0 8914 i
+ * i  14.14.14.14/32   13.13.13.13              0    100      0 8914 ?
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh bgp vpnv4 uni vrf A 
+BGP table version is 26, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal, 
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, 
+              x best-external, a additional-path, c RIB-compressed, 
+              t secondary path, 
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+Route Distinguisher: 1:1 (default for vrf A)
+ *>   4.4.4.4/32       10.1.5.5                               0 456 i
+ *>   5.5.5.5/32       10.1.5.5                 0             0 456 i
+ *>   6.6.6.6/32       10.1.5.5                               0 456 i
+ * i  7.7.7.7/32       3.3.3.3                  0    100      0 456 ?
+ *>i                   3.3.3.3                  0    100      0 456 ?
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh bgp vpnv4 uni vrf B
+% Unknown VRF
+
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh mpls int
+Interface              IP            Tunnel   BGP Static Operational
+GigabitEthernet1.12    Yes (ldp)     No       No  No     Yes        
+GigabitEthernet1.111   Yes (ldp)     No       No  No     Yes        
+GigabitEthernet1.112   Yes           No       No  No     No         
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh mpls ldp nei
+    Peer LDP Ident: 11.11.11.11:0; Local LDP Ident 1.1.1.1:0
+        TCP connection: 11.11.11.11.54835 - 1.1.1.1.646
+        State: Oper; Msgs sent/rcvd: 74/74; Downstream
+        Up time: 00:47:46
+        LDP discovery sources:
+          GigabitEthernet1.111, Src IP addr: 10.1.11.11
+        Addresses bound to peer LDP Ident:
+          11.11.11.11     10.11.12.11     10.2.11.11      10.1.11.11      
+    Peer LDP Ident: 2.2.2.2:0; Local LDP Ident 1.1.1.1:0
+        TCP connection: 2.2.2.2.51096 - 1.1.1.1.646
+        State: Oper; Msgs sent/rcvd: 74/73; Downstream
+        Up time: 00:47:45
+        LDP discovery sources:
+          GigabitEthernet1.12, Src IP addr: 10.1.2.2
+        Addresses bound to peer LDP Ident:
+          10.1.2.2        2.2.2.2         
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh mpls ldp bind
+  lib entry: 1.1.1.1/32, rev 2
+        local binding:  label: imp-null
+        remote binding: lsr: 11.11.11.11:0, label: 24000
+        remote binding: lsr: 2.2.2.2:0, label: 16
+  lib entry: 2.2.2.2/32, rev 10
+        local binding:  label: 16
+        remote binding: lsr: 2.2.2.2:0, label: imp-null
+        remote binding: lsr: 11.11.11.11:0, label: 24010
+  lib entry: 3.3.3.3/32, rev 73
+        local binding:  label: 28
+        remote binding: lsr: 11.11.11.11:0, label: 24011
+        remote binding: lsr: 2.2.2.2:0, label: 21
+  lib entry: 10.1.2.0/24, rev 4
+        local binding:  label: imp-null
+        remote binding: lsr: 11.11.11.11:0, label: 24001
+        remote binding: lsr: 2.2.2.2:0, label: imp-null
+  lib entry: 10.1.11.0/24, rev 6
+        local binding:  label: imp-null
+        remote binding: lsr: 11.11.11.11:0, label: imp-null
+        remote binding: lsr: 2.2.2.2:0, label: 17
+  lib entry: 10.1.12.0/24, rev 59
+        local binding:  label: 18
+        remote binding: lsr: 11.11.11.11:0, label: 24006
+        remote binding: lsr: 2.2.2.2:0, label: 25
+  lib entry: 10.2.11.0/24, rev 53
+        local binding:  label: 32
+        remote binding: lsr: 11.11.11.11:0, label: imp-null
+        remote binding: lsr: 2.2.2.2:0, label: 18
+  lib entry: 10.2.12.0/24, rev 61
+        local binding:  label: 19
+        remote binding: lsr: 11.11.11.11:0, label: 24005
+        remote binding: lsr: 2.2.2.2:0, label: 27
+  lib entry: 10.2.13.0/24, rev 69
+        local binding:  label: 24
+        remote binding: lsr: 11.11.11.11:0, label: 24009
+        remote binding: lsr: 2.2.2.2:0, label: 24
+  lib entry: 10.3.12.0/24, rev 63
+        local binding:  label: 20
+        remote binding: lsr: 11.11.11.11:0, label: 24004
+        remote binding: lsr: 2.2.2.2:0, label: 26
+  lib entry: 10.3.13.0/24, rev 71
+        local binding:  label: 26
+        remote binding: lsr: 11.11.11.11:0, label: 24008
+        remote binding: lsr: 2.2.2.2:0, label: 28
+  lib entry: 10.11.12.0/24, rev 55
+        local binding:  label: 21
+        remote binding: lsr: 11.11.11.11:0, label: imp-null
+        remote binding: lsr: 2.2.2.2:0, label: 29
+  lib entry: 10.12.13.0/24, rev 65
+        local binding:  label: 22
+        remote binding: lsr: 11.11.11.11:0, label: 24003
+        remote binding: lsr: 2.2.2.2:0, label: 30
+  lib entry: 11.11.11.11/32, rev 51
+        local binding:  label: 31
+        remote binding: lsr: 11.11.11.11:0, label: imp-null
+        remote binding: lsr: 2.2.2.2:0, label: 19
+  lib entry: 12.12.12.12/32, rev 57
+        local binding:  label: 33
+        remote binding: lsr: 11.11.11.11:0, label: 24002
+        remote binding: lsr: 2.2.2.2:0, label: 31
+  lib entry: 13.13.13.13/32, rev 67
+        local binding:  label: 25
+        remote binding: lsr: 11.11.11.11:0, label: 24007
+        remote binding: lsr: 2.2.2.2:0, label: 20
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#show mpls forwarding-table 
+Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    
+Label      Label      or Tunnel Id     Switched      interface              
+16         Pop Label  2.2.2.2/32       33381         Gi1.12     10.1.2.2    
+17         No Label   5.5.5.5/32[V]    2416          Gi1.15     10.1.5.5    
+18         24006      10.1.12.0/24     0             Gi1.111    10.1.11.11  
+19         24005      10.2.12.0/24     0             Gi1.111    10.1.11.11  
+20         24004      10.3.12.0/24     0             Gi1.111    10.1.11.11  
+21         Pop Label  10.11.12.0/24    0             Gi1.111    10.1.11.11  
+22         24003      10.12.13.0/24    0             Gi1.111    10.1.11.11  
+23         No Label   6.6.6.6/32[V]    0             Gi1.15     10.1.5.5    
+24         24009      10.2.13.0/24     0             Gi1.111    10.1.11.11  
+25         24007      13.13.13.13/32   10950         Gi1.111    10.1.11.11  
+26         24008      10.3.13.0/24     0             Gi1.111    10.1.11.11  
+27         No Label   4.4.4.4/32[V]    0             Gi1.15     10.1.5.5    
+28         24011      3.3.3.3/32       0             Gi1.111    10.1.11.11  
+31         Pop Label  11.11.11.11/32   7804          Gi1.111    10.1.11.11  
+32         Pop Label  10.2.11.0/24     0             Gi1.111    10.1.11.11  
+33         24002      12.12.12.12/32   0             Gi1.111    10.1.11.11  
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+      1.0.0.0/32 is subnetted, 1 subnets
+C        1.1.1.1 is directly connected, Loopback0
+      2.0.0.0/32 is subnetted, 1 subnets
+i L2     2.2.2.2 [115/10] via 10.1.2.2, 00:47:47, GigabitEthernet1.12
+      3.0.0.0/32 is subnetted, 1 subnets
+i L2     3.3.3.3 [115/40] via 10.1.11.11, 00:47:37, GigabitEthernet1.111
+      10.0.0.0/8 is variably subnetted, 12 subnets, 2 masks
+C        10.1.2.0/24 is directly connected, GigabitEthernet1.12
+L        10.1.2.1/32 is directly connected, GigabitEthernet1.12
+C        10.1.11.0/24 is directly connected, GigabitEthernet1.111
+L        10.1.11.1/32 is directly connected, GigabitEthernet1.111
+i L2     10.1.12.0/24 [115/30] via 10.1.11.11, 00:47:49, GigabitEthernet1.111
+i L2     10.2.11.0/24 [115/20] via 10.1.11.11, 00:47:51, GigabitEthernet1.111
+i L2     10.2.12.0/24 [115/30] via 10.1.11.11, 00:47:49, GigabitEthernet1.111
+i L2     10.2.13.0/24 [115/40] via 10.1.11.11, 00:47:42, GigabitEthernet1.111
+i L2     10.3.12.0/24 [115/30] via 10.1.11.11, 00:47:49, GigabitEthernet1.111
+i L2     10.3.13.0/24 [115/40] via 10.1.11.11, 00:47:42, GigabitEthernet1.111
+i L2     10.11.12.0/24 [115/20] via 10.1.11.11, 00:47:51, GigabitEthernet1.111
+i L2     10.12.13.0/24 [115/30] via 10.1.11.11, 00:47:49, GigabitEthernet1.111
+      11.0.0.0/32 is subnetted, 1 subnets
+i L2     11.11.11.11 [115/20] via 10.1.11.11, 00:47:51, GigabitEthernet1.111
+      12.0.0.0/32 is subnetted, 1 subnets
+i L2     12.12.12.12 [115/30] via 10.1.11.11, 00:47:49, GigabitEthernet1.111
+      13.0.0.0/32 is subnetted, 1 subnets
+i L2     13.13.13.13 [115/40] via 10.1.11.11, 00:47:42, GigabitEthernet1.111
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#sh ip route isis | i /32
+      2.0.0.0/32 is subnetted, 1 subnets
+      3.0.0.0/32 is subnetted, 1 subnets
+      11.0.0.0/32 is subnetted, 1 subnets
+      12.0.0.0/32 is subnetted, 1 subnets
+      13.0.0.0/32 is subnetted, 1 subnets
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#!!!
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#
+CSR-1-PE-RR-ASN-1#wr
+Building configuration...
